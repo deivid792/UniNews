@@ -1,0 +1,43 @@
+using Uninews.Domain.Entities.Users;
+using Uninews.Domain.Shared;
+using Uninews.Domain.ValueObjects;
+
+namespace Uninews.Domain.Entities.UnitNews;
+
+public sealed class News: BaseEntity
+{
+    public Title Title { get; private set; } = default!;
+    public DateOnly Date { get; private set; } = default!;
+    public TimeOnly Time { get; private set; } = default!;
+    public Description Description { get; private set; } = default!;
+
+    public User User{ get; private set; } = default!;
+
+    private News(){}
+
+    private News(User user, Title title, Description description)
+    {
+        User = user;
+        Title = title;
+        Date = DateOnly.FromDateTime(DateTime.UtcNow);
+        Time = TimeOnly.FromDateTime(DateTime.UtcNow);
+        Description = description;
+    }
+
+    public static News Create(User user, Title title, Description description)
+    {
+        var news = new News(user, title, description);
+
+        if(title.HasErros)
+            news.AddRangeNotification(title.Erros);
+
+        if(description.HasErros)
+            news.AddRangeNotification(description.Erros);
+
+        if(news.HasErros)
+            news.User.AddRangeNotification(news.Erros);
+
+        return news;
+    }
+
+}
