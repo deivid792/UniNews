@@ -4,11 +4,11 @@ namespace Uninews.Domain.ValueObjects;
 
 public sealed class CPF : Notifiable
 {
-    public string? Valeu { get; }
+    public string? Value { get; }
 
     private CPF(){}
 
-    private CPF(string? valeu) => Valeu = valeu;
+    private CPF(string? value) => Value = value;
 
     public static CPF Create(string? value)
     {
@@ -16,9 +16,7 @@ public sealed class CPF : Notifiable
 
         var contract = new Contract()
             .Requires()
-            .IsNotNullOrWhiteSpace("CPF", normalized)
-            .MinLength("CPF", 11, normalized)
-            .MaxLength("CPF", 11, normalized);
+            .IsNotNullOrWhiteSpace("CPF", normalized);
 
         var cpf = new CPF(normalized);
 

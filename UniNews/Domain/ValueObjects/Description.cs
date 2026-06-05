@@ -18,7 +18,7 @@ public sealed class Description : Notifiable
             .Requires()
             .IsNotNullOrWhiteSpace("Description", normalized)
             .MinLength("Description", 4, normalized)
-            .MaxLength("Description", 12, normalized);
+            .MaxLength("Description", 120, normalized);
 
         var description = new Description(normalized);
 

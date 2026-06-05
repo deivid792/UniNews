@@ -18,7 +18,7 @@ public sealed class Category : Notifiable
             .Requires()
             .IsNotNullOrWhiteSpace("Category",normalized)
             .MinLength("Category", 3, normalized)
-            .MaxLength("Category", 10, normalized);
+            .MaxLength("Category", 100, normalized);
 
         var category = new Category(normalized);
 

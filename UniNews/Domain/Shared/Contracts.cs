@@ -1,3 +1,4 @@
+using System;
 using System.Text.RegularExpressions;
 
 namespace Uninews.Domain.Shared;
@@ -48,4 +49,13 @@ public sealed class Contract : Notifiable
 
         return this;
     }
+    public Contract CheckPastDate(string key, DateOnly data)
+    {
+        if (data < DateOnly.FromDateTime(DateTime.UtcNow))
+        {
+            AddNotification(key, "A data Não pode ser no passado!");
+        }
+        return this;
+    }
+
 }

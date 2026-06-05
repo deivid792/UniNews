@@ -6,7 +6,7 @@ public abstract class Notifiable
 
     public bool HasErros => _notification.Any();
 
-    public IReadOnlyCollection<Notifications> Erros => _notification;
+    public IReadOnlyCollection<Notifications> Erros => _notification.AsReadOnly();
 
     public void AddNotification(string key, string message)
     {
