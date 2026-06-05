@@ -79,6 +79,7 @@ Domain/
   CPF.cs
   Description.cs
   Email.cs
+  Image.cs
   Location.cs
   Name.cs
   Password.cs

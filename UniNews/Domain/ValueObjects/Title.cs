@@ -18,7 +18,7 @@ public sealed class Title : Notifiable
             .Requires()
             .IsNotNullOrWhiteSpace("Title",normalized)
             .MinLength("Title", 3, normalized)
-            .MaxLength("Title", 10, normalized);
+            .MaxLength("Title", 100, normalized);
 
         var title = new Title(normalized);
 
